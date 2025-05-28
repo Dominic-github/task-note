@@ -1,6 +1,5 @@
 import axiosInstance from '@/lib/axios'
-import { signIn, signOut } from 'next-auth/react'
-import { ref } from 'yup'
+import { signIn } from 'next-auth/react'
 
 interface RegisterData {
   email: string
@@ -28,9 +27,8 @@ export const authService = {
 
   refreshAccessToken: async (userId: string, refreshToken: string) => {
     axiosInstance.defaults.headers.common['x-client-id'] = userId
-    axiosInstance.defaults.headers.common[
-      'x-refresh-token'
-    ] = `Bearer ${refreshToken}`
+    axiosInstance.defaults.headers.common['x-refresh-token'] =
+      `Bearer ${refreshToken}`
 
     const response = await axiosInstance.post('/auth/refresh-token')
     if (response.status === 200) {

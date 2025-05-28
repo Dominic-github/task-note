@@ -1,5 +1,4 @@
 import axiosInstance from '@/lib/axios'
-import { updateTodo } from '@/store/todo/todo.thunk'
 import { TodoItem } from '@/store/todo/todoSlice'
 
 export const todoService = {

@@ -1,16 +1,16 @@
-import NextAuth from 'next-auth'
+import NextAuth, { AuthOptions, Session } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axiosInstance from '@/lib/axios'
 import { jwtDecode } from 'jwt-decode'
 import { authService } from '@/services/auth.service'
+import { JWT } from 'next-auth/jwt'
 
 interface JwtPayload {
   exp: number
   iat?: number
-  [key: string]: any
 }
 
-export const authOptions: any = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -18,7 +18,7 @@ export const authOptions: any = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _req) {
         try {
           const res = await axiosInstance.post('/auth/login', {
             email: credentials?.email,
@@ -104,15 +104,14 @@ export const authOptions: any = {
         token.refreshTokenExpires = decodedRefresh.exp * 1000
 
         return token
-      } catch (error) {
+      } catch (_error) {
         return null
       }
     },
 
-    async session({ session, token }: any) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       session.user = token.user
-      session.accessToken = token.accessToken
-      session.error = token.error
+      session.accessToken = token.accessToken as string | undefined
       return session
     }
   },

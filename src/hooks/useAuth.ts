@@ -23,7 +23,7 @@ export const useAuth = () => {
             if (session.user) {
               dispatch(setUser(session.user))
             }
-          } catch (error) {
+          } catch (_error) {
             router.replace(
               `/auth/login?callbackUrl=${encodeURIComponent(pathname)}`
             )
@@ -37,5 +37,5 @@ export const useAuth = () => {
       }
       dispatch(setLoading(false))
     }
-  }, [session, status, dispatch])
+  }, [session, status, dispatch, router, pathname])
 }

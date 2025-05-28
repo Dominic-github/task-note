@@ -90,11 +90,11 @@ function Account() {
     setIsLoading(true)
 
     try {
-      const reponse = await userService.updateUser({
+      const response = await userService.updateUser({
         name
       })
-      if (reponse.status === 200) {
-        const user = reponse.data
+      if (response.status === 200) {
+        const user = response.data
         if (session && session.user) {
           await sessionUpdate({
             user: user
@@ -114,12 +114,12 @@ function Account() {
     setIsLoading(true)
 
     try {
-      const reponse = await userService.updatePassword(
+      const response = await userService.updatePassword(
         data.currentPassword,
         data.newPassword
       )
-      if (reponse.status === 200) {
-        const user = reponse.data
+      if (response.status === 200) {
+        const user = response.data
         if (session && session.user) {
           await sessionUpdate({
             user: user
@@ -158,7 +158,8 @@ function Account() {
             <CardHeader>
               <CardTitle>Account</CardTitle>
               <CardDescription>
-                Make changes to your account here. Click save when you're done.
+                Make changes to your account here. Click save when you&apos;re
+                done.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -201,7 +202,8 @@ function Account() {
               <CardHeader>
                 <CardTitle>Password</CardTitle>
                 <CardDescription>
-                  Change your password here. After saving, you'll be logged out.
+                  Change your password here. After saving, you&apos;ll be logged
+                  out.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">

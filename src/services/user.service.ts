@@ -14,7 +14,7 @@ export const userService = {
       } else {
         throw new Error('Failed to fetch user data')
       }
-    } catch (error) {
+    } catch (_error) {
       throw new Error('Error fetching user data')
     }
   },
@@ -27,7 +27,7 @@ export const userService = {
       } else {
         throw new Error('Failed to fetch user data')
       }
-    } catch (error) {
+    } catch (_error) {
       throw new Error('Error fetching user data')
     }
   },

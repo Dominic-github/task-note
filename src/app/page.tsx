@@ -27,7 +27,6 @@ import {
   createTodo,
   fetchTodos,
   deleteTodoAsync,
-  updateTodo,
   deleteAllTodoAsync,
   toggleTodoCompleted
 } from '@/store/todo/todo.thunk'
@@ -38,7 +37,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { TodoItem } from '@/store/todo/todoSlice'
 import { Icons } from '@/components/Icons/Icons'
 
-export default function TodoApp(date: Date) {
+export default function TodoApp() {
   useAuth()
   const dispatch = useAppDispatch()
 
@@ -52,7 +51,7 @@ export default function TodoApp(date: Date) {
 
   useEffect(() => {
     if (selectedDate) {
-      dispatch(fetchTodos(new   Date(selectedDate)))
+      dispatch(fetchTodos(new Date(selectedDate)))
     }
   }, [dispatch, selectedDate])
 
