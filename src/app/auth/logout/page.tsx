@@ -13,8 +13,8 @@ function Logout() {
   const dispatch = useDispatch()
   const handleLogout = async () => {
     try {
-      const reponse = await authService.logout()
-      if (reponse && reponse.status === 200) {
+      const response = await authService.logout()
+      if (response && response.status === 200) {
         delete axiosInstance.defaults.headers.common['Authorization']
         await signOut({ redirect: false })
         dispatch(logout())
@@ -27,6 +27,7 @@ function Logout() {
 
   useEffect(() => {
     handleLogout()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <></>

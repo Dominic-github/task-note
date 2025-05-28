@@ -2,7 +2,7 @@
 
 import { Calendar } from '@/components/ui/calendar'
 import { SidebarGroup, SidebarGroupContent } from '@/components/ui/sidebar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '../ui/button'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
 import { setSelectedDate } from '@/store/todo/todoSlice'

@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -46,7 +45,6 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const dispatch = useDispatch()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -75,7 +73,7 @@ export function LoginForm({
       }
     } catch (error: any) {
       setIsLoading(false)
-      toast.error(error.message || 'Login failed. Please try again.')
+      toast.error(error?.message || 'Login failed. Please try again.')
     } finally {
       setIsLoading(false)
     }
