@@ -1,16 +1,16 @@
-import NextAuth, { AuthOptions, Session } from 'next-auth'
+import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axiosInstance from '@/lib/axios'
 import { jwtDecode } from 'jwt-decode'
 import { authService } from '@/services/auth.service'
-import { JWT } from 'next-auth/jwt'
 
 interface JwtPayload {
   exp: number
   iat?: number
+  [key: string]: any
 }
 
-export const authOptions: AuthOptions = {
+export const authOptions: any = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -109,9 +109,10 @@ export const authOptions: AuthOptions = {
       }
     },
 
-    async session({ session, token }: { session: Session; token: JWT }) {
+    async session({ session, token }: any) {
       session.user = token.user
-      session.accessToken = token.accessToken as string | undefined
+      session.accessToken = token.accessToken
+      session.error = token.error
       return session
     }
   },
